@@ -6,7 +6,29 @@ The project refer to a paper which is *[Efficient GPU Path Rendering Using Scanl
 
 ## Build
 
+**Windows**：
+
 First, you should install **Visiual Studio 2019 (MSVC v142)** and **Windows 10 SDK**. The vulkan installation is **required**. Because the project need to load some vulkan DLL file such as `shaderc_shared.dll` and you may need to use some tools. For example, if you modify a compute shader, you will use `glslc` to compile the modified shader and input command "`glslc xxx.comp -o spv/xxx.spv`". Luckily, a script is provided which is `workdir/shaders/shader_compile.py`. You can run the script to compile all shaders. You no longer have to manually input commands to compile the specified shaders.
+
+
+
+**Linux**：
+
+- Run `git submodule init` then `git submodule update`
+
+- Install [vulkan-icd-loader](https://archlinux.org/packages/?name=vulkan-icd-loader)
+
+  ```sh
+  pacman -S vulkan-icd-loader
+  ```
+
+- Verification：`ls /usr/share/vulkan/icd.d/` or `vulkaninfo`
+
+- Build：`BUILD_TARGET=a.out ./script/build.sh -j[N]` (N is your cpu core number)
+
+- Run：`cd workdir && ../build/bin/a.out`
+
+
 
 ## Dependencies
 
